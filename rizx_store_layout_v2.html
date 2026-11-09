@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101820">
+<title>RIZX STORE</title>
+<style>
+:root{
+ --bg:#eef3f6;--surface:#fff;--ink:#17232d;--muted:#72818d;--line:#dce5ea;
+ --accent:#ff8a3d;--accent2:#f15b45;--soft:#fff0e7;--nav:#fff;
+ --shadow:0 8px 26px rgba(24,45,58,.08)
+}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eaf1f4,#f5f8fa);font:14px/1.45 system-ui,-apple-system,Segoe UI,Arial;color:var(--ink);padding-bottom:94px}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+.app{max-width:760px;margin:auto;min-height:100vh}
+header{height:54px;padding:0 17px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.9);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.brand{font-weight:950;letter-spacing:.7px;font-size:17px}.brand b{color:var(--accent2)}
+.headright{font-size:11px;color:var(--muted)}
+main{padding:15px 14px 25px}
+.page{display:none}.page.active{display:block}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:19px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.hero{background:linear-gradient(120deg,#17232d,#344653);color:#fff;border:0;padding:19px}
+.hero .eyebrow{font-size:10px;letter-spacing:1px;color:#c7d2d9;font-weight:800}
+.hero h1{font-size:27px;line-height:1.08;margin:8px 0 13px}
+.money{font-size:29px;font-weight:900}.tiny{font-size:11px;color:var(--muted)}.hero .tiny{color:#d2dce2}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.status{display:inline-flex;align-items:center;gap:6px;border-radius:30px;padding:6px 10px;font-size:11px;font-weight:800;background:#e7f7ef;color:#168153}
+.status.closed{background:#fff0e9;color:#c34e34}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+h2{font-size:16px;margin:0 0 12px}h3{font-size:13px;margin:0 0 8px}
+.muted{color:var(--muted)}.small{font-size:11px}
+.menu-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.menu-btn{border:1px solid var(--line);background:#f8fafb;border-radius:14px;padding:11px 3px 9px;text-align:center;color:var(--ink);font-size:10px;font-weight:700}
+.menu-btn .ico{width:34px;height:34px;border-radius:12px;margin:0 auto 6px;display:grid;place-items:center;background:var(--soft);color:var(--accent2);font-size:17px}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.quick{padding:12px 5px;border:1px solid var(--line);border-radius:13px;text-align:center;background:#fbfcfd;font-size:10px;color:#52616c}
+.quick strong{display:block;font-size:15px;color:var(--ink)}
+.notice{padding:12px;border-radius:13px;background:#fff7ed;border:1px solid #f5dfca;color:#8b542b;font-size:11px}
+.field{margin:10px 0}.field label{display:block;font-size:11px;font-weight:750;margin-bottom:5px;color:#52616c}
+input,textarea,select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#fbfcfd;color:var(--ink);outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)}
+.btn{border:0;border-radius:11px;padding:11px 14px;background:var(--accent);color:#24150d;font-weight:850}
+.btn.dark{background:#253541;color:white}.btn.ghost{background:#f0f4f6;color:#344653;border:1px solid var(--line)}
+.btn.red{background:#ffe9e5;color:#b83f32}.btn.green{background:#e3f6ed;color:#16754d}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.full{width:100%}.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.tab{padding:8px 4px;border:1px solid var(--line);border-radius:9px;background:#f7f9fa;font-size:10px;color:#65737d}
+.tab.active{background:#253541;color:#fff;border-color:#253541}
+.listitem{padding:12px 0;border-bottom:1px solid #edf1f3}.listitem:last-child{border:0}
+.pill{display:inline-block;font-size:10px;border-radius:20px;padding:4px 8px;background:#edf2f5;color:#53636e}
+.bottom{position:fixed;bottom:0;left:0;right:0;z-index:8;background:rgba(255,255,255,.94);border-top:1px solid var(--line);backdrop-filter:blur(12px)}
+.bottomnav{max-width:760px;margin:auto;height:68px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;padding:5px 10px}
+.navbtn{border:0;background:none;color:#82909a;font-size:10px;display:grid;justify-items:center;gap:3px}
+.navbtn .navico{font-size:19px}.navbtn.active{color:var(--accent2);font-weight:900}
+.adminbox{border:1px dashed #e5b18d;background:#fffaf6}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{padding:10px;border-radius:12px;background:#f5f8fa}.stat b{display:block;font-size:17px}
+.hidden{display:none!important}
+@media(min-width:650px){main{padding:20px}.hero h1{font-size:34px}.card{padding:19px}.menu-btn{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand">RIZX <b>STORE</b></div><div class="headright">PUSAT LAYANAN • DEMO</div></header>
+<main>
+<section class="page active" id="home">
+ <div class="card hero">
+  <div class="row"><span class="eyebrow">RIZX STORE • DASHBOARD</span><span class="status" id="heroStatus"><i class="dot"></i> STOR DIBUKA</span></div>
+  <h1>Halo, selamat datang<br>di RIZX STORE</h1>
+  <div class="tiny">Saldo demo kamu</div><div class="money" id="balance">Rp0</div>
+  <div class="row"><span class="tiny">Harga layanan: lihat info admin</span><button class="btn" onclick="showPage('balancePage')">Lihat Saldo</button></div>
+ </div>
+ <div class="card"><h2>Menu Utama</h2><div class="menu-grid">
+  <button class="menu-btn" onclick="showPage('storePage')"><div class="ico">➤</div>Stor</button>
+  <button class="menu-btn" onclick="showPage('historyPage')"><div class="ico">◷</div>Riwayat</button>
+  <button class="menu-btn" onclick="showPage('checkerPage')"><div class="ico">⌕</div>Checker</button>
+  <button class="menu-btn" onclick="showPage('balancePage')"><div class="ico">▣</div>Saldo</button>
+  <button class="menu-btn" onclick="showPage('rulesPage')"><div class="ico">▤</div>Rules</button>
+ </div></div>
+ <div class="card"><h2>Layanan Lain</h2><div class="quick-grid">
+  <button class="quick" onclick="showPage('supportPage')">♧<strong>Support</strong></button>
+  <button class="quick" onclick="showPage('communityPage')">▣<strong>Komunitas</strong></button>
+  <button class="quick" onclick="showPage('profilePage')">♙<strong>Profil</strong></button>
+  <button class="quick" onclick="showPage('adminPage')">⚙<strong>Admin</strong></button>
+ </div></div>
+ <div class="card"><h2>Ringkasan Pengajuan</h2><div class="statgrid">
+  <div class="stat"><span class="tiny">Pending</span><b id="pendingCount">0</b></div>
+  <div class="stat"><span class="tiny">Diterima</span><b id="acceptedCount">0</b></div>
+  <div class="stat"><span class="tiny">Ditolak</span><b id="rejectedCount">0</b></div>
+ </div></div>
+</section>
+
+<section class="page" id="storePage">
+ <div class="card">
+  <div class="row"><h2>Stor / Pengajuan</h2><span class="status" id="storeStatus">DIBUKA</span></div>
+  <div class="notice">Gunakan formulir ini untuk mengajukan layanan yang sah. Jangan masukkan password, OTP, kode pemulihan, atau data login akun Google.</div>
+  <div class="field"><label>Nama</label><input id="storeName" maxlength="50" placeholder="Nama kamu"></div>
+  <div class="field"><label>Kontak</label><input id="storeContact" maxlength="70" placeholder="Kontak yang bisa dihubungi"></div>
+  <div class="field"><label>Jenis layanan / catatan</label><textarea id="storeNote" rows="3" maxlength="250" placeholder="Jelaskan kebutuhanmu tanpa data rahasia"></textarea></div>
+  <button class="btn full" id="sendRequest" onclick="submitRequest()">Kirim Pengajuan</button>
+  <p class="tiny" id="storeMessage">Pengajuan akan tercatat pada demo browser ini.</p>
+ </div>
+</section>
+
+<section class="page" id="historyPage"><div class="card"><h2>Riwayat Pengajuan</h2><div id="historyList" class="muted small">Belum ada riwayat.</div></div></section>
+
+<section class="page" id="checkerPage">
+ <div class="card"><h2>Checker Status Pengajuan</h2><p class="muted small">Masukkan kode pengajuan dari demo ini untuk melihat status. Bukan untuk memeriksa akun Gmail.</p>
+ <div class="field"><label>Kode pengajuan</label><input id="checkId" placeholder="Contoh: RZ-123456"></div><button class="btn" onclick="checkRequest()">Cek Status</button><p id="checkResult" class="small"></p></div>
+</section>
+
+<section class="page" id="rulesPage"><div class="card"><h2>Rules RIZX STORE</h2>
+ <div class="listitem">1. Isi informasi dengan benar dan gunakan kontak milik sendiri.</div>
+ <div class="listitem">2. Jangan mengirim password, OTP, kode pemulihan, atau akses akun pribadi.</div>
+ <div class="listitem">3. Admin akan memeriksa pengajuan secara manual.</div>
+ <div class="listitem">4. Jangan mengirim data orang lain tanpa izin.</div>
+ <div class="listitem">5. Status dan estimasi layanan akan diumumkan secara transparan.</div>
+ </div></section>
+
+<section class="page" id="balancePage"><div class="card"><h2>Saldo Demo</h2><div class="money" id="balance2">Rp0</div><p class="muted small">Saldo dan penarikan belum terhubung ke pembayaran sungguhan.</p><button class="btn ghost" disabled>Tarik Saldo — belum aktif</button><h3 style="margin-top:18px">Riwayat Transaksi</h3><p class="muted small">Belum ada transaksi.</p></div></section>
+
+<section class="page" id="supportPage"><div class="card"><h2>Zero Support</h2><p class="muted">Pusat bantuan RIZX STORE.</p><p class="small">Tambahkan tautan kontak resmi milikmu setelah website siap dipublikasikan.</p></div></section>
+<section class="page" id="communityPage"><div class="card"><h2>Komunitas</h2><p class="muted">Informasi komunitas akan ditampilkan di sini.</p></div></section>
+<section class="page" id="profilePage"><div class="card"><h2>Profil</h2><div class="field"><label>Nama tampilan</label><input id="profileName" placeholder="Nama pengguna"></div><button class="btn" onclick="saveProfile()">Simpan Profil</button><p id="profileMsg" class="tiny"></p></div></section>
+
+<section class="page" id="adminPage"><div class="card adminbox"><h2>Panel Admin RIZX</h2><p class="muted small">Mode demo lokal. PIN awal 2468 — ganti sebelum uji coba. Jangan gunakan sebagai keamanan website publik.</p>
+ <div id="adminLogin"><div class="field"><label>PIN Admin</label><input id="adminPin" type="password" inputmode="numeric" placeholder="PIN admin"></div><button class="btn dark" onclick="adminLogin()">Masuk</button></div>
+ <div id="adminPanel" class="hidden">
+  <h3>Kontrol Toko</h3><div class="row"><span class="small">Status penerimaan pengajuan</span><span class="status" id="adminStatus">DIBUKA</span></div>
+  <div class="row" style="margin:10px 0"><button class="btn green" onclick="setStore(true)">Buka Stor</button><button class="btn red" onclick="setStore(false)">Tutup Stor</button></div>
+  <div class="field"><label>Pengumuman</label><input id="announcementInput" maxlength="140" placeholder="Tulis pengumuman"></div><button class="btn ghost" onclick="saveAnnouncement()">Simpan Pengumuman</button>
+  <h3 style="margin-top:18px">Pengajuan Masuk</h3><div id="adminRequests"></div>
+  <button class="btn ghost" onclick="adminLogout()">Keluar Admin</button>
+ </div>
+ </div></section>
+</main>
+<nav class="bottom"><div class="bottomnav">
+ <button class="navbtn active" data-page="home" onclick="showPage('home')"><span class="navico">⌂</span>Beranda</button>
+ <button class="navbtn" data-page="historyPage" onclick="showPage('historyPage')"><span class="navico">◷</span>Riwayat</button>
+ <button class="navbtn" data-page="storePage" onclick="showPage('storePage')"><span class="navico">➤</span>Stor</button>
+ <button class="navbtn" data-page="balancePage" onclick="showPage('balancePage')"><span class="navico">▣</span>Saldo</button>
+ <button class="navbtn" data-page="profilePage" onclick="showPage('profilePage')"><span class="navico">♙</span>Profil</button>
+</div></nav>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+let openStore=localStorage.getItem('rzx_open')!=='false';
+let requests=JSON.parse(localStorage.getItem('rzx_requests')||'[]');
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+ document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ window.scrollTo({top:0,behavior:'smooth'});refresh();
+}
+function refresh(){
+ ['heroStatus','storeStatus','adminStatus'].forEach(id=>{
+  const e=$(id);if(!e)return;e.className='status'+(openStore?'':' closed');
+  e.innerHTML='<i class="dot"></i> '+(openStore?'STOR DIBUKA':'STOR DITUTUP');
+ });
+ $('sendRequest').disabled=!openStore;
+ $('pendingCount').textContent=requests.filter(x=>x.status==='Pending').length;
+ $('acceptedCount').textContent=requests.filter(x=>x.status==='Diterima').length;
+ $('rejectedCount').textContent=requests.filter(x=>x.status==='Ditolak').length;
+ $('balance').textContent='Rp0';$('balance2').textContent='Rp0';
+ $('announcementInput').value=localStorage.getItem('rzx_announcement')||'';
+ renderLists();
+}
+function save(){localStorage.setItem('rzx_requests',JSON.stringify(requests))}
+function submitRequest(){
+ if(!openStore){$('storeMessage').textContent='Stor sedang ditutup.';return}
+ const name=$('storeName').value.trim(),contact=$('storeContact').value.trim(),note=$('storeNote').value.trim();
+ if(!name||!contact){$('storeMessage').textContent='Nama dan kontak wajib diisi.';return}
+ const id='RZ-'+Math.floor(100000+Math.random()*900000);
+ requests.unshift({id,name,contact,note,status:'Pending',date:new Date().toLocaleString('id-ID')});
+ save();$('storeName').value='';$('storeContact').value='';$('storeNote').value='';
+ $('storeMessage').textContent='Pengajuan tersimpan. Kode: '+id;refresh();
+}
+function adminLogin(){
+ if($('adminPin').value===(localStorage.getItem('rzx_pin')||'2468')){
+ $('adminLogin').classList.add('hidden');$('adminPanel').classList.remove('hidden');refresh();
+ }else alert('PIN salah.');
+}
+function adminLogout(){$('adminPanel').classList.add('hidden');$('adminLogin').classList.remove('hidden');$('adminPin').value=''}
+function setStore(v){openStore=v;localStorage.setItem('rzx_open',String(v));refresh()}
+function saveAnnouncement(){localStorage.setItem('rzx_announcement',$('announcementInput').value.trim());alert('Pengumuman demo disimpan.')}
+function updateStatus(id,status){requests=requests.map(x=>x.id===id?{...x,status}:x);save();refresh()}
+function renderLists(){
+ const hist=$('historyList'),admin=$('adminRequests');if(!hist||!admin)return;
+ hist.innerHTML='';admin.innerHTML='';
+ if(!requests.length){hist.textContent='Belum ada riwayat.';admin.textContent='Belum ada pengajuan.';return}
+ requests.forEach(r=>{
+  const item=document.createElement('div');item.className='listitem';
+  const title=document.createElement('b');title.textContent=r.name+' • '+r.status;
+  const meta=document.createElement('div');meta.className='tiny muted';meta.textContent=r.id+' | '+r.date;
+  item.append(title,meta);hist.append(item);
+  const a=item.cloneNode(true);
+  const detail=document.createElement('div');detail.className='tiny muted';detail.textContent=r.contact+(r.note?' | '+r.note:'');a.append(detail);
+  if(r.status==='Pending'){
+   const controls=document.createElement('div');controls.style.marginTop='8px';
+   [['Terima','Diterima'],['Tolak','Ditolak']].forEach(([label,value])=>{
+    const b=document.createElement('button');b.className='btn '+(value==='Ditolak'?'red':'green');b.textContent=label;b.onclick=()=>updateStatus(r.id,value);controls.append(b);
+   });a.append(controls);
+  }admin.append(a);
+ });
+}
+function checkRequest(){
+ const id=$('checkId').value.trim().toUpperCase(),r=requests.find(x=>x.id===id);
+ $('checkResult').textContent=r?'Status '+r.id+': '+r.status:'Kode tidak ditemukan di demo ini.';
+}
+function saveProfile(){localStorage.setItem('rzx_profile',$('profileName').value.trim());$('profileMsg').textContent='Profil demo disimpan.'}
+$('profileName').value=localStorage.getItem('rzx_profile')||'';
+refresh();
+</script>
+</body>
+</html>
